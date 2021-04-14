@@ -1,0 +1,31 @@
+{% extends 'blog_app/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class ="row mb-3">
+        <h3>{{ cats }}</h3>
+        {% if  category_posts %}
+            {% for blog in category_posts %}
+
+            <div class="col-lg-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ blog.header_image.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></h5>
+                        <p class="card-text"></p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+        {% else %}
+        <h3>SORRY!This Page Does Not Exist....</h3>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock content %}

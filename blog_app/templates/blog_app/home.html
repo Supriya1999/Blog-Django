@@ -1,0 +1,28 @@
+{% extends 'blog_app/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class ="row mb-3">
+        <h3>Read The Best Blog In Town</h3>
+
+        {% for blog in object_list %}
+
+            <div class="col-lg-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ blog.header_image.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{{ blog.get_absolute_url }}">{{ blog.title }} - <a href="{% url 'blog_app:cat_view' blog.category|slugify %}">{{ blog.category }}</a></a></h5>
+                        <p class="card-text"></p>
+                        <a href="{{ blog.get_absolute_url }}" class="btn btn-primary">View More</a>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock content %}

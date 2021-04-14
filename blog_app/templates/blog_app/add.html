@@ -1,0 +1,28 @@
+{% extends 'blog_app/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="container pt-5">
+    <form method="post" enctype="multipart/form-data">
+     {% csrf_token %}
+     {{ form.media }}
+     {% for field in form.visible_fields %}
+     <div class="form-group">
+        <label for="{{ field.id_for_label }}"><br>{{ field.label }}</label>
+        {{ field|add_class:'form-control' }}
+        {% for error in field.errors %}
+        <span class="help-block">{{ error }}</span>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">
+        <span class="glyphicon glyphicon-ok"></span> Add
+        </button>
+        <a href="{% url 'blog_app:posts' %}" class="btn btn-default">Cancel</a>
+    </div>
+    </form>
+</div>
+
+
+{% endblock content %}
